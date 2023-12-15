@@ -1,0 +1,82 @@
+<form>
+    <h1>{{formTitle}}</h1>
+  <!-- * TITLE -->
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input [(ngModel)]="title" name="title" type="text" matInput />
+  </mat-form-field>
+
+  <!-- * ADDRESS -->
+  <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input [(ngModel)]="address" name="address" type="text" matInput />
+  </mat-form-field>
+
+  <div class="row-wrapper">
+    <!-- * DISCTRICT -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Disctrict</mat-label>
+      <input [(ngModel)]="district" name="district" type="text" matInput />
+    </mat-form-field>
+
+    <!-- * CITY -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>City</mat-label>
+      <input [(ngModel)]="city" name="city" type="text" matInput />
+    </mat-form-field>
+
+    <!-- * ZIPCODE -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Zipcode</mat-label>
+      <input [(ngModel)]="zipcode" name="zipcode" type="text" matInput />
+    </mat-form-field>
+  </div>
+
+  <!-- * DESCRIPTION -->
+  <mat-form-field appearance="fill">
+    <mat-label>Leave a comment</mat-label>
+    <textarea
+      [(ngModel)]="description"
+      name="description"
+      matInput
+      placeholder="Ex. It makes me feel..."
+    ></textarea>
+  </mat-form-field>
+
+  <!-- * CUSTOM COORDINATES -->
+  <mat-checkbox [(ngModel)]="coordinates" name="coordinates">
+    Custom Coordinates
+  </mat-checkbox>
+
+  <!-- * LATITUDE -->
+  <mat-form-field appearance="fill">
+    <mat-label>Latitude</mat-label>
+    <input
+      [disabled]="!coordinates"
+      [(ngModel)]="lat"
+      name="lat"
+      type="number"
+      matInput
+    />
+  </mat-form-field>
+
+  <!-- * LONGITUDE -->
+  <mat-form-field appearance="fill">
+    <mat-label>Longitude</mat-label>
+    <input
+      [disabled]="!coordinates"
+      [(ngModel)]="long"
+      name="long"
+      type="number"
+      matInput
+    />
+  </mat-form-field>
+
+  <!-- * VISIBILITY -->
+  <mat-checkbox [(ngModel)]="visibility" name="visibility">
+    Visibility
+  </mat-checkbox>
+
+
+  <button mat-raised-button color="primary">Submit</button>
+</form>
