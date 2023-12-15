@@ -1,2 +1,7 @@
-<app-project-form [project]="project"></app-project-form>
-<button mat-raised-button>delete project</button>
+<body>
+    <button mat-icon-button [routerLink]="'/home'">
+        <mat-icon>arrow_back</mat-icon>
+      </button>e
+  <app-project-form [project]="project" [formTitle]="'Edit project'"></app-project-form>
+  <button mat-raised-button>delete project</button>
+</body>
