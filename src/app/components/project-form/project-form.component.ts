@@ -27,21 +27,19 @@ export class ProjectFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // if (this.project === undefined) {
-    //   this.project = {
-    //     id: '',
-    //     imgId: [''],
-    //     title: '',
-    //     address: '',
-    //     city: '',
-    //     zipcode: '',
-    //     district: '',
-    //     description: '',
-    //     lat: null,
-    //     long: null,
-    //     visibility: false,
-    //   }
-    // }
+
+    if(this.project !== undefined){
+      this.id = this.project.id;
+      this.title = this.project.title;
+      this.address = this.project.address;
+      this.district = this.project.district;
+      this.city = this.project.city;
+      this.description = this.project.description;
+      this.imgId = this.project.imgId;
+      this.visibility = this.project.visibility;
+      this.lat = this.project.lat;
+      this.long = this.project.long;
+    }
 
 
 

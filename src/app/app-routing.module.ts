@@ -6,7 +6,7 @@ import { NewProjectComponent } from './pages/new-project/new-project.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent},
-  {path:'edit-project/?id', component:EditProjectComponent},
+  {path:'edit-project', component:EditProjectComponent},
   {path:'new-project', component:NewProjectComponent},
   {path:'**', redirectTo:'home'}
 ];
