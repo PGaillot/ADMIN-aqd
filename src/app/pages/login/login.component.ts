@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
       //* USER LOGGED !
       const user = result.user;
+      localStorage.setItem('username', user.displayName ? user.displayName : user.uid)
       this.router.navigate(['home']);
     })
     .catch((error) => {
