@@ -41,30 +41,42 @@ export class HomeComponent implements OnInit {
     },
   ]
 
-  houseRequests:HouseRequest[] = [
+  houseRequests: HouseRequest[] = [
     {
-      mail:'pr.gaillot@gmail.com',
-      address:'13 Rue Camille Desmoulins',
+      mail: 'pr.gaillot@gmail.com',
+      address: '13 Rue Camille Desmoulins',
       lat: 49.8827005,
       long: 2.2939912,
+      status: 'approuved',
+      zipcode:'80000',
+      city:'Amiens',
     },
     {
-      mail:'camImmo@gmail.com',
-      address:'13 Rue Camille Desmoulins',
+      mail: 'camImmo@gmail.com',
+      address: '13 Rue Camille Desmoulins',
       lat: 49.8827005,
       long: 2.2939912,
+      status: 'reject',
+      zipcode:'80000',
+      city:'Amiens',
     },
     {
-      mail:'superTest@gmail.com',
-      address:'34 Rue Camille Desmoulins',
+      mail: 'superTest@gmail.com',
+      address: '34 Rue Camille Desmoulins',
       lat: 49.8827005,
       long: 2.2939912,
+      status: 'pending',
+      zipcode:'80000',
+      city:'Amiens',
     },
     {
-      mail:'testtesttest@yahoo.fr',
-      address:'56 Rue Camille Desmoulins',
+      mail: 'testtesttest@yahoo.fr',
+      address: '56 Rue Camille Desmoulins',
       lat: 49.8827005,
       long: 2.2939912,
+      status: 'pending',
+      zipcode:'80000',
+      city:'Amiens',
     },
   ]
 
