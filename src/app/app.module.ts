@@ -8,8 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
-import { HomeRequestListComponent } from './components/home-request-list/home-request-list.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HouseRequestListComponent } from './components/house-request-list/house-request-list.component';
 import { NewProjectComponent } from './pages/new-project/new-project.component';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -19,7 +18,7 @@ import { MatButtonModule} from '@angular/material/button'
 import { MatIconModule} from '@angular/material/icon'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
-
+import { HomeComponent } from './pages/home/home.component';
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -29,6 +28,7 @@ const MaterialModules = [
   MatIconModule,
   MatPaginatorModule,
   MatTableModule,
+
 ]
 
 @NgModule({
@@ -36,10 +36,10 @@ const MaterialModules = [
     AppComponent,
     ProjectFormComponent,
     ProjectsListComponent,
-    HomeRequestListComponent,
-    HomeComponent,
+    HouseRequestListComponent,
     NewProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    HomeComponent,
   ],
   imports: [
     FormsModule,

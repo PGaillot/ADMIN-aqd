@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeRequestListComponent } from './home-request-list.component';
+import { HouseRequestListComponent } from './house-request-list.component';
 
-describe('HomeRequestListComponent', () => {
-  let component: HomeRequestListComponent;
-  let fixture: ComponentFixture<HomeRequestListComponent>;
+describe('houseRequestListComponent', () => {
+  let component: HouseRequestListComponent;
+  let fixture: ComponentFixture<HouseRequestListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeRequestListComponent ]
+      declarations: [ HouseRequestListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeRequestListComponent);
+    fixture = TestBed.createComponent(HouseRequestListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

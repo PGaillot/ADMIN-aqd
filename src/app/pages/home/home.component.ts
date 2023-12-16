@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
+import { HouseRequest } from 'src/app/models/house-request.model'
 import { Project } from 'src/app/models/project.model'
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-house',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
@@ -37,6 +38,33 @@ export class HomeComponent implements OnInit {
       zipcode: '80000',
       district: 'henriville',
       visibility: false,
+    },
+  ]
+
+  houseRequests:HouseRequest[] = [
+    {
+      mail:'pr.gaillot@gmail.com',
+      address:'13 Rue Camille Desmoulins',
+      lat: 49.8827005,
+      long: 2.2939912,
+    },
+    {
+      mail:'camImmo@gmail.com',
+      address:'13 Rue Camille Desmoulins',
+      lat: 49.8827005,
+      long: 2.2939912,
+    },
+    {
+      mail:'superTest@gmail.com',
+      address:'34 Rue Camille Desmoulins',
+      lat: 49.8827005,
+      long: 2.2939912,
+    },
+    {
+      mail:'testtesttest@yahoo.fr',
+      address:'56 Rue Camille Desmoulins',
+      lat: 49.8827005,
+      long: 2.2939912,
     },
   ]
 

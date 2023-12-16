@@ -34,11 +34,14 @@ export class ProjectFormComponent implements OnInit, AfterViewInit {
   this.imagesInputRef.nativeElement.addEventListener('change', (event:any) => {
 
 
-    //TODO
-    this.imgId = [...this.imgId, event.target.files[0].lastModified];
+    console.log(event.target.files);
 
-    console.log(event.target.files)
+    event.target.files.forEach((file:any) => {
+      this.imgId = [...this.imgId, file.lastModified]
+    });
 
+    console.log(this.imgId);
+    
   });
 
   }
