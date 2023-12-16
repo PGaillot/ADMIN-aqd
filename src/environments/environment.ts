@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyBJuTtAcCTghmQAha_fKYoeOhOJtyHAhWo",
-    authDomain: "aqd-map-17674.firebaseapp.com",
-    databaseURL: "https://aqd-map-17674-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "aqd-map-17674",
-    storageBucket: "aqd-map-17674.appspot.com",
-    messagingSenderId: "137149531944",
-    appId: "1:137149531944:web:44d6334786ec6612a8721d",
-    measurementId: "G-R048QQ4J7B"
+    // apiKey: "",
+    // authDomain: "",
+    // databaseURL: "",
+    // projectId: "",
+    // storageBucket: "",
+    // messagingSenderId: "",
+    // appId: "",
+    // measurementId: ""
   }
 };
 
