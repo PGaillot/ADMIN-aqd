@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
 import { Project } from 'src/app/models/project.model'
 
 @Component({
@@ -6,10 +6,10 @@ import { Project } from 'src/app/models/project.model'
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss'],
 })
-export class ProjectFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit, AfterViewInit {
   
   id: string = ''
-  imgId: string[] = ['']
+  imgId: string[] = []
   title: string = ''
   address: string = ''
   city: string = 'Amiens'
@@ -23,9 +23,26 @@ export class ProjectFormComponent implements OnInit {
   coordinates: boolean = false
   @Input() project: Project | undefined
   @Input() formTitle: string = '';
+  @ViewChild('images') imagesInputRef!:ElementRef;
 
   constructor() {}
 
+
+
+
+  ngAfterViewInit(): void {
+  this.imagesInputRef.nativeElement.addEventListener('change', (event:any) => {
+
+
+    //TODO
+    this.imgId = [...this.imgId, event.target.files[0].lastModified];
+
+    console.log(event.target.files)
+
+  });
+
+  }
+  
   ngOnInit(): void {
 
     if(this.project !== undefined){
@@ -40,7 +57,6 @@ export class ProjectFormComponent implements OnInit {
       this.lat = this.project.lat;
       this.long = this.project.long;
     }
-
 
 
   }
