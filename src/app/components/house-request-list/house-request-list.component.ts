@@ -16,8 +16,6 @@ export class HouseRequestListComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    console.log(this.houseRequests);
     
   }
 
