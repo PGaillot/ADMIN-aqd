@@ -8,7 +8,7 @@ import { HouseRequest } from 'src/app/models/house-request.model';
 })
 export class HouseRequestListComponent implements OnInit {
 
-  displayedColumns:string[] = ['address', 'mail'];
+  displayedColumns:string[] = ['address', 'mail', 'status'];
   @Input() houseRequests!:HouseRequest[];
 
 

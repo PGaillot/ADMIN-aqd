@@ -20,7 +20,8 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatTableModule } from '@angular/material/table'
 import { HomeComponent } from './pages/home/home.component'
 import { MatDialogModule } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component'
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { LoginComponent } from './pages/login/login.component'
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -43,6 +44,7 @@ const MaterialModules = [
     EditProjectComponent,
     HomeComponent,
     ConfirmDialogComponent,
+    LoginComponent,
   ],
   imports: [
     FormsModule,
