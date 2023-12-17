@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { HouseRequest } from 'src/app/models/house-request.model'
 import { Project } from 'src/app/models/project.model'
+import { LoginService } from 'src/app/services/login.service'
 
 @Component({
   selector: 'app-house',
@@ -8,7 +9,9 @@ import { Project } from 'src/app/models/project.model'
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private loginService:LoginService
+  ) {}
 
   projects: Array<Project> = [
     {
@@ -79,6 +82,10 @@ export class HomeComponent implements OnInit {
       city:'Amiens',
     },
   ]
+
+  onLogout(){
+    this.loginService.isLogout()
+  }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('username'));

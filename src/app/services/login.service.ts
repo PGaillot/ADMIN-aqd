@@ -1,24 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
+import { getAuth, signOut } from 'firebase/auth'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
+  constructor(
+    private router:Router
+  ) {}
 
-  constructor() { }
+  logged: boolean = false
 
-  logged:boolean = false;
-
-  isLoggedIn(){
-    this.logged = true;
+  isLoggedIn() {
+    this.logged = true
   }
 
-  isSignOut(){
-    this.logged = false;
+  isLogout() {
+    const auth = getAuth()
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        this.logged = false;
+        localStorage.removeItem('username');
+        this.router.navigate(['login']);
+      })
+      .catch((error) => {
+        // An error happened.
+      })
   }
 
-  isLogged():boolean{
-    return this.logged;
+  isLogged(): boolean {
+    return this.logged
   }
-
 }

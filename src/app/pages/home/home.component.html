@@ -1,3 +1,17 @@
+<mat-toolbar>
+  <button [matMenuTriggerFor]="menu" mat-icon-button aria-label="menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+  <span>My App</span>
+</mat-toolbar>
+
+
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Projects">
     <app-projects-list [projects]="projects"></app-projects-list>
