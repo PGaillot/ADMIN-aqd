@@ -3,6 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 import { environment } from 'src/environments/environment'
 import { Router } from '@angular/router'
+import { LoginService } from 'src/app/services/login.service'
 
 const app = initializeApp(environment.firebaseConfig)
 const auth = getAuth(app)
@@ -15,7 +16,8 @@ const provider = new GoogleAuthProvider()
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private router:Router
+    private router:Router,
+    private loginService:LoginService,
   ) {}
 
   openLoginModal(){
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
 
       //* USER LOGGED !
       const user = result.user;
-      localStorage.setItem('username', user.displayName ? user.displayName : user.uid)
+      this.loginService.isLoggedIn();
+      localStorage.setItem('username', user.displayName ? user.displayName : user.uid);
       this.router.navigate(['home']);
     })
     .catch((error) => {

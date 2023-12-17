@@ -7,8 +7,18 @@ export class LoginService {
 
   constructor() { }
 
+  logged:boolean = false;
+
   isLoggedIn(){
-    return localStorage.getItem('username')!==null;
+    this.logged = true;
+  }
+
+  isSignOut(){
+    this.logged = false;
+  }
+
+  isLogged():boolean{
+    return this.logged;
   }
 
 }
