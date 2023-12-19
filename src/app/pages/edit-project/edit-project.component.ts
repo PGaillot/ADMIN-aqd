@@ -11,8 +11,8 @@ import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-d
 })
 export class EditProjectComponent implements OnInit {
   projectData: any
-
   project!: Project
+
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
@@ -29,7 +29,6 @@ export class EditProjectComponent implements OnInit {
     confirmDialogRef.afterClosed().subscribe((res) => {
       if (res) {
         this.router.navigate(['home'])
-      } else {
       }
     })
   }

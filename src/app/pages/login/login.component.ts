@@ -4,6 +4,9 @@ import { initializeApp } from 'firebase/app'
 import { environment } from 'src/environments/environment'
 import { Router } from '@angular/router'
 import { LoginService } from 'src/app/services/login.service'
+import { Store } from '@ngrx/store'
+import { updateUser } from 'src/app/state/login/login.actions'
+import { User } from 'src/app/models/user.model'
 
 const app = initializeApp(environment.firebaseConfig)
 const auth = getAuth(app)
@@ -18,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router:Router,
     private loginService:LoginService,
+    private store:Store,
   ) {}
 
   openLoginModal(){
@@ -27,10 +31,18 @@ export class LoginComponent implements OnInit {
       const token = credential!.accessToken
 
       //* USER LOGGED !
-      const user = result.user;
-      this.loginService.isLoggedIn();
-      localStorage.setItem('username', user.displayName ? user.displayName : user.uid);
-      this.router.navigate(['home']);
+      if(result.user.displayName && result.user.email){
+        const user:User = {username :result.user.displayName, mail: result.user.email};
+      
+        this.loginService.isLoggedIn();
+
+        this.router.navigate(['home']);
+        
+        this.store.dispatch(updateUser({user}))
+      }
+
+
+
     })
     .catch((error) => {
       const errorCode = error.code

@@ -19,12 +19,13 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatTableModule } from '@angular/material/table'
 import { HomeComponent } from './pages/home/home.component'
-import { MatDialogModule } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog'
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component'
 import { LoginComponent } from './pages/login/login.component'
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatMenuModule } from '@angular/material/menu'
+import { StoreModule } from '@ngrx/store'
+import { loginReducer, metaReducers } from './state/login/login.reducer'
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -57,6 +58,14 @@ const MaterialModules = [
     ...MaterialModules,
     AppRoutingModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot(
+      {
+        login: loginReducer,
+      },
+      {
+        metaReducers:metaReducers
+      },
+    ),
   ],
   exports: [...MaterialModules],
   providers: [],
