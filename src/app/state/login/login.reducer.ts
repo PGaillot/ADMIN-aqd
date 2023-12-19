@@ -9,15 +9,15 @@ import { clearLogin, initLoginAction, updateUser } from './login.actions'
 
 const initialState = {
   user: {
+    id:'',
     username: '',
     mail: '',
-  },
+  }
 }
 
 function log(actionReducer: ActionReducer<any>): ActionReducer<any> {
   return (state, action) => {
     const currentState = actionReducer(state, action)
-
     console.groupCollapsed(action.type)
     console.log('before init : ', state)
     console.log('after init : ', currentState)

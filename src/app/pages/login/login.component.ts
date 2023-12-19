@@ -27,28 +27,22 @@ export class LoginComponent implements OnInit {
   openLoginModal(){
     signInWithPopup(auth, provider)
     .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result)
-      const token = credential!.accessToken
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential!.accessToken;
 
       //* USER LOGGED !
       if(result.user.displayName && result.user.email){
-        const user:User = {username :result.user.displayName, mail: result.user.email};
-      
+        const user:User = {username :result.user.displayName, mail: result.user.email, id:result.user.uid};
         this.loginService.isLoggedIn();
-
         this.router.navigate(['home']);
-        
-        this.store.dispatch(updateUser({user}))
+        this.store.dispatch(updateUser({user}));
       }
-
-
-
     })
     .catch((error) => {
-      const errorCode = error.code
-      const errorMessage = error.message
-      const email = error.customData.email
-      const credential = GoogleAuthProvider.credentialFromError(error)
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
     })
   }
 
