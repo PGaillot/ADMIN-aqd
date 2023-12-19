@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { HouseRequest } from 'src/app/models/house-request.model'
 import { Project } from 'src/app/models/project.model'
 import { LoginService } from 'src/app/services/login.service'
+import { ProjetsService } from 'src/app/services/projets.service'
 
 @Component({
   selector: 'app-house',
@@ -10,7 +11,8 @@ import { LoginService } from 'src/app/services/login.service'
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private loginService:LoginService
+    private loginService:LoginService,
+    private projectsService:ProjetsService
   ) {}
 
   projects: Array<Project> = [
@@ -89,6 +91,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(localStorage.getItem('username'));
-    
+    this.projectsService.getProject();
   }
 }
