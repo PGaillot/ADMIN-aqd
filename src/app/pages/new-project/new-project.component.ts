@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Project } from 'src/app/models/project.model';
+import { createProject } from 'src/app/state/root/root.actions';
 
 @Component({
   selector: 'app-new-project',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewProjectComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store:Store
+  ) { }
+
+  submitForm(project:Project){
+    this.store.dispatch(createProject({project:project}))
+  }
 
   ngOnInit(): void {
   }

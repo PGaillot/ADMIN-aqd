@@ -26,6 +26,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatMenuModule } from '@angular/material/menu'
 import { StoreModule } from '@ngrx/store'
 import { loginReducer, metaReducers } from './state/login/login.reducer'
+import {  rootReducer } from './state/root/root.reducer'
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -60,10 +61,12 @@ const MaterialModules = [
     BrowserAnimationsModule,
     StoreModule.forRoot(
       {
-        login: loginReducer,
+        root:rootReducer,
+        login:loginReducer
+        
       },
       {
-        metaReducers:metaReducers
+        metaReducers:metaReducers,
       },
     ),
   ],

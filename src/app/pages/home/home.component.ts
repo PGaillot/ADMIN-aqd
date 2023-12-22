@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { Store } from '@ngrx/store'
+import { Store, select } from '@ngrx/store'
+import { Observable } from 'rxjs'
 import { HouseRequest } from 'src/app/models/house-request.model'
 import { Project } from 'src/app/models/project.model'
+import { User } from 'src/app/models/user.model'
 import { LoginService } from 'src/app/services/login.service'
 import { clearLogin } from 'src/app/state/login/login.actions'
+import { initState, updateHouseRequests, updateProjects } from 'src/app/state/root/root.actions'
 
 @Component({
   selector: 'app-home',
@@ -11,11 +14,8 @@ import { clearLogin } from 'src/app/state/login/login.actions'
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private loginService:LoginService,
-    private store:Store
-  ) {}
-
+  constructor(private loginService: LoginService, private store: Store) {}
+  
   projects: Array<Project> = [
     {
       id: '1',
@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
       lat: 49.8827005,
       long: 2.2939912,
       status: 'approuved',
-      zipcode:'80000',
-      city:'Amiens',
+      zipcode: '80000',
+      city: 'Amiens',
     },
     {
       mail: 'camImmo@gmail.com',
@@ -63,8 +63,8 @@ export class HomeComponent implements OnInit {
       lat: 49.8827005,
       long: 2.2939912,
       status: 'reject',
-      zipcode:'80000',
-      city:'Amiens',
+      zipcode: '80000',
+      city: 'Amiens',
     },
     {
       mail: 'superTest@gmail.com',
@@ -72,8 +72,8 @@ export class HomeComponent implements OnInit {
       lat: 49.8827005,
       long: 2.2939912,
       status: 'pending',
-      zipcode:'80000',
-      city:'Amiens',
+      zipcode: '80000',
+      city: 'Amiens',
     },
     {
       mail: 'testtesttest@yahoo.fr',
@@ -81,17 +81,21 @@ export class HomeComponent implements OnInit {
       lat: 49.8827005,
       long: 2.2939912,
       status: 'pending',
-      zipcode:'80000',
-      city:'Amiens',
+      zipcode: '80000',
+      city: 'Amiens',
     },
   ]
 
-  onLogout(){
-    this.store.dispatch(clearLogin());
+  user$: Observable<string> = new Observable<string>()
+
+  onLogout() {
+    // this.store.dispatch(clearLogin())
     this.loginService.isLogout()
   }
 
   ngOnInit(): void {
-    
+    this.store.dispatch(initState());
+    this.store.dispatch(updateProjects({projects:this.projects}));
+    this.store.dispatch(updateHouseRequests({houseRequest:this.houseRequests}));
   }
 }

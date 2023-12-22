@@ -6,8 +6,13 @@ import {
   props,
 } from '@ngrx/store'
 import { clearLogin, initLoginAction, updateUser } from './login.actions'
+import { User } from 'src/app/models/user.model'
 
-const initialState = {
+export interface LoginState{
+  user:User
+}
+
+const initialLoginState:LoginState = {
   user: {
     id:'',
     username: '',
@@ -29,12 +34,12 @@ function log(actionReducer: ActionReducer<any>): ActionReducer<any> {
 export const metaReducers: MetaReducer[] = [log]
 
 export const loginReducer = createReducer(
-  initialState,
+  initialLoginState,
   //? INIT LOGIN ACTION
-  on(initLoginAction, (state) => state),
+  on(initLoginAction, (state:LoginState) => state),
 
   //? UPDATE USER ACTION
-  on(updateUser, (state, props) => {
+  on(updateUser, (state:LoginState, props) => {
     return {
       ...state,
       user: props.user,
@@ -42,5 +47,5 @@ export const loginReducer = createReducer(
   }),
 
   //? ClEAR LOGIN ACTION
-  on(clearLogin, (state) => initialState)
+  on(clearLogin, (state:LoginState) => initialLoginState)
 )
