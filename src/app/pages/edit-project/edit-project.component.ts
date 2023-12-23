@@ -36,9 +36,7 @@ export class EditProjectComponent implements OnInit {
           .then(() => {
             console.log('Deteled Success');
             this.router.navigate(['home']);
-          })
-
-          .catch((e) => console.error(e))
+          }).catch((e) => console.error(e));
       }
     })
   }
