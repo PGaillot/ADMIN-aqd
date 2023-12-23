@@ -29,7 +29,8 @@ import { loginReducer, metaReducers } from './state/login/login.reducer'
 import {  rootReducer } from './state/root/root.reducer'
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { environment } from 'src/environments/environment'
+import { environment } from 'src/environments/environment';
+import { HouseRequestDetailsComponent } from './pages/house-request-details/house-request-details.component'
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -55,6 +56,7 @@ const MaterialModules = [
     HomeComponent,
     ConfirmDialogComponent,
     LoginComponent,
+    HouseRequestDetailsComponent,
   ],
   imports: [
     FormsModule,

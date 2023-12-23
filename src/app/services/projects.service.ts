@@ -19,9 +19,6 @@ export class ProjectsService {
     return this.projects$;
   }
 
-
-  //         setDoc(doc(this.projectsCollection, docRef.id), projectUpdated)
-
   removeProject(id:string):Promise<any>{
     return deleteDoc(doc(this.projectsCollection, id));
   }

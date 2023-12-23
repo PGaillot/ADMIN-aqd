@@ -10,7 +10,7 @@
       <!-- Mail Column -->
       <ng-container matColumnDef="mail">
         <th mat-header-cell *matHeaderCellDef>mail</th>
-        <td mat-cell *matCellDef="let row">{{ row.mail }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.email }}</td>
       </ng-container>
   
       <!-- Status Column -->
@@ -18,6 +18,14 @@
         <th mat-header-cell *matHeaderCellDef>status</th>
         <td mat-cell *matCellDef="let row"><mat-icon [style]="{'color':row.status === 'approuved' ? '#6BE08E' : row.status === 'pending' ? '#A36CE0' : '#E06D6C'}">{{ row.status === 'approuved' ? 'verified' : row.status === 'pending' ? 'pending' : 'mood_bad' }}</mat-icon></td>
       </ng-container>
+  
+  
+      <!-- Edit Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>edit</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="navToEdit(row)"><mat-icon>edit</mat-icon></button>
+        </td>      </ng-container>
   
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

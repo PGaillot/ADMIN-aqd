@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HouseRequest } from 'src/app/models/house-request.model';
 
 @Component({
@@ -8,12 +9,16 @@ import { HouseRequest } from 'src/app/models/house-request.model';
 })
 export class HouseRequestListComponent implements OnInit {
 
-  displayedColumns:string[] = ['address', 'mail', 'status'];
-  @Input() houseRequests!:HouseRequest[];
+  displayedColumns:string[] = ['address', 'mail', 'status', 'edit'];
+  @Input() houseRequests!:Observable<HouseRequest[]>;
 
 
   constructor() { }
 
+  navToEdit(houseRequest:HouseRequest){
+    console.log('nev to edit ?...');
+    
+  }
 
   ngOnInit(): void {
     
