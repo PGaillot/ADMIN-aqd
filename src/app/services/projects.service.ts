@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Firestore, collection, collectionData, Query } from '@angular/fire/firestore'
+import { Firestore, collection, collectionData, Query, deleteDoc, doc } from '@angular/fire/firestore'
 import { Observable, tap } from 'rxjs'
 import { Project } from '../models/project.model'
 
@@ -17,5 +17,12 @@ export class ProjectsService {
 
   getProjects():Observable<Project[]> {
     return this.projects$;
+  }
+
+
+  //         setDoc(doc(this.projectsCollection, docRef.id), projectUpdated)
+
+  removeProject(id:string):Promise<any>{
+    return deleteDoc(doc(this.projectsCollection, id));
   }
 }

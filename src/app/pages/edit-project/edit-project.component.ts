@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Project } from 'src/app/models/project.model'
 import { MatDialog } from '@angular/material/dialog'
 import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component'
+import { ProjectsService } from 'src/app/services/projects.service'
 
 @Component({
   selector: 'app-edit-project',
@@ -16,6 +17,7 @@ export class EditProjectComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
+    private projectsService: ProjectsService,
     private router: Router,
   ) {}
 
@@ -23,12 +25,20 @@ export class EditProjectComponent implements OnInit {
     const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete this project.',
-        content: 'are you sure you want to erase this project? this action is irreversible.',
+        content:
+          'are you sure you want to erase this project? this action is irreversible.',
       },
     })
     confirmDialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        this.router.navigate(['home'])
+        this.projectsService
+          .removeProject(this.project.id)
+          .then(() => {
+            console.log('Deteled Success');
+            this.router.navigate(['home']);
+          })
+
+          .catch((e) => console.error(e))
       }
     })
   }
