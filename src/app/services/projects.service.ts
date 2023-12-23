@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core'
-import { Firestore, collectionData, collection } from '@angular/fire/firestore'
-import { inject } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Firestore, collection, collectionData, Query } from '@angular/fire/firestore'
+import { Observable, tap } from 'rxjs'
 import { Project } from '../models/project.model'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectsService {
-  firestore: Firestore = inject(Firestore);
-  projects$:Observable<any> =  new Observable<any>();
-  constructor() {
-    const projectCollection = collection(this.firestore, 'Projects');
-    this.projects$ = collectionData(projectCollection);
-    }
+  private projectsCollection
+  projects$: Observable<any[]> = new Observable<any[]>()
 
-  
-  getProjects(){
+  constructor(private firestore: Firestore) {
+    this.projectsCollection = collection(firestore, 'Projects');
+    this.projects$ =  collectionData(this.projectsCollection);
+  }
 
-    this.projects$.subscribe(res => console.log(res))
-    
+  getProjects() {
+    this.projects$.subscribe()
   }
 }

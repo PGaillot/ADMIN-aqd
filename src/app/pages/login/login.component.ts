@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectsService
-      .getProjects()
+    this.projectsService.getProjects()
   }
 }

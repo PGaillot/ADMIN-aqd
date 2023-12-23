@@ -7,6 +7,7 @@ import {
   DocumentReference,
 } from '@angular/fire/firestore'
 import { Store } from '@ngrx/store'
+import { setDoc } from 'firebase/firestore'
 import { Project } from 'src/app/models/project.model'
 import { createProject } from 'src/app/state/root/root.actions'
 
@@ -30,7 +31,7 @@ export class NewProjectComponent implements OnInit {
     this.store.dispatch(createProject({ project: project }))
 
     addDoc(this.projectsCollection, project).then((docRef: DocumentReference) => {
-      console.log(docRef)
+      console.log(docRef.id);
     })
   }
 

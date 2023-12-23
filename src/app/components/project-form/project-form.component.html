@@ -1,20 +1,19 @@
-<form>
-    <h1>{{formTitle}}</h1>
+<form #form="ngForm">
+  <h1>{{ formTitle }}</h1>
   <!-- * TITLE -->
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input [(ngModel)]="title" name="title" type="text" matInput />
+    <input [(ngModel)]="title" name="title" type="text" matInput required />
   </mat-form-field>
 
   <!-- * ADDRESS -->
   <mat-form-field appearance="fill">
     <mat-label>Address</mat-label>
-    <input [(ngModel)]="address" name="address" type="text" matInput />
+    <input [(ngModel)]="address" name="address" type="text" matInput required />
   </mat-form-field>
 
   <!-- * row-wrapper -->
   <div class="row-wrapper">
-
     <!-- * DISCTRICT -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Disctrict</mat-label>
@@ -24,29 +23,39 @@
     <!-- * CITY -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>City</mat-label>
-      <input [(ngModel)]="city" name="city" type="text" matInput />
+      <input [(ngModel)]="city" name="city" type="text" matInput required />
     </mat-form-field>
 
     <!-- * ZIPCODE -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Zipcode</mat-label>
-      <input [(ngModel)]="zipcode" name="zipcode" type="text" matInput />
+      <input
+        [(ngModel)]="zipcode"
+        name="zipcode"
+        type="text"
+        matInput
+        required
+      />
     </mat-form-field>
-    
   </div>
 
-
-  <!-- IMAGES -->
+  <!-- * IMAGES -->
   <div class="images-wrapper">
-      <img class="img-size" src="https://i.imgur.com/8bRfxnY.png" alt="">
-      <img class="img-size" src="https://i.imgur.com/ZJZaSEs.png" alt="">
+    <!-- <img class="img-size" src="https://i.imgur.com/8bRfxnY.png" alt="" />
+    <img class="img-size" src="https://i.imgur.com/ZJZaSEs.png" alt="" /> -->
 
     <label for="images" class="img-size">
       <mat-icon>add</mat-icon>
       <span>Add image</span>
     </label>
-    <input class="add-img-input" multiple="multiple" type="file" name="images" id="images" #images>
-
+    <input
+      class="add-img-input"
+      multiple="multiple"
+      type="file"
+      name="images"
+      id="images"
+      #images
+    />
   </div>
 
   <!-- * DESCRIPTION -->
@@ -67,9 +76,8 @@
   </mat-checkbox>
 
   <div class="row-wrapper">
-
     <!-- * LATITUDE -->
-    <mat-form-field class="full-width"  appearance="fill">
+    <mat-form-field class="full-width" appearance="fill">
       <mat-label>Latitude</mat-label>
       <input
         [disabled]="!coordinates"
@@ -79,7 +87,7 @@
         matInput
       />
     </mat-form-field>
-  
+
     <!-- * LONGITUDE -->
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Longitude</mat-label>
@@ -91,7 +99,6 @@
         matInput
       />
     </mat-form-field>
-
   </div>
 
   <!-- * VISIBILITY -->
@@ -99,6 +106,12 @@
     Visibility
   </mat-checkbox>
 
-
-  <button mat-raised-button color="primary" (click)="sumbmitClick()">Submit</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="sumbmitClick(form)"
+    [disabled]="!form.valid"
+  >
+    Submit
+  </button>
 </form>
