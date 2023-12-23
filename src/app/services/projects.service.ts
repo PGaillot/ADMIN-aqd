@@ -16,6 +16,6 @@ export class ProjectsService {
   }
 
   getProjects() {
-    this.projects$.subscribe()
+    this.projects$.subscribe(res => console.log(res))
   }
 }
