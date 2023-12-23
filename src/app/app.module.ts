@@ -27,6 +27,9 @@ import { MatMenuModule } from '@angular/material/menu'
 import { StoreModule } from '@ngrx/store'
 import { loginReducer, metaReducers } from './state/login/login.reducer'
 import {  rootReducer } from './state/root/root.reducer'
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment'
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -56,6 +59,8 @@ const MaterialModules = [
   imports: [
     FormsModule,
     BrowserModule,
+    provideFirebaseApp(() => initializeApp({ ...environment.firebaseConfig })),
+    provideFirestore(() => getFirestore()),
     ...MaterialModules,
     AppRoutingModule,
     BrowserAnimationsModule,
