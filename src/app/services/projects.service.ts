@@ -8,14 +8,14 @@ import { Project } from '../models/project.model'
 })
 export class ProjectsService {
   private projectsCollection
-  projects$: Observable<any[]> = new Observable<any[]>()
+  projects$: Observable<Project[]> = new Observable<Project[]>()
 
   constructor(private firestore: Firestore) {
     this.projectsCollection = collection(firestore, 'Projects');
-    this.projects$ =  collectionData(this.projectsCollection);
+    this.projects$ =  collectionData(this.projectsCollection) as Observable<Project[]>;
   }
 
-  getProjects() {
-    this.projects$.subscribe(res => console.log(res))
+  getProjects():Observable<Project[]> {
+    return this.projects$;
   }
 }

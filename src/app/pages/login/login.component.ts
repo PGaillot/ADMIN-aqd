@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 import { environment } from 'src/environments/environment'
@@ -18,7 +18,7 @@ const provider = new GoogleAuthProvider()
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   constructor(
     private router: Router,
     private loginService: LoginService,
@@ -50,9 +50,5 @@ export class LoginComponent implements OnInit {
         const email = error.customData.email
         const credential = GoogleAuthProvider.credentialFromError(error)
       })
-  }
-
-  ngOnInit(): void {
-    this.projectsService.getProjects()
   }
 }

@@ -14,14 +14,12 @@
 
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Projects">
-    <app-projects-list [projects]="projects"></app-projects-list>
+    <app-projects-list [projects$]="projects$"></app-projects-list>
   </mat-tab>
 
   <mat-tab label="house Requests">
     <app-house-request-list [houseRequests]="houseRequests"></app-house-request-list>
   </mat-tab>
 </mat-tab-group>
-
-
 
 <button mat-fab class="new-project-fab-btn" [routerLink]="'/new-project'"><mat-icon>add</mat-icon></button>

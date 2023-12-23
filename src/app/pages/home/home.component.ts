@@ -5,6 +5,7 @@ import { HouseRequest } from 'src/app/models/house-request.model'
 import { Project } from 'src/app/models/project.model'
 import { User } from 'src/app/models/user.model'
 import { LoginService } from 'src/app/services/login.service'
+import { ProjectsService } from 'src/app/services/projects.service'
 import { clearLogin } from 'src/app/state/login/login.actions'
 import { initState, updateHouseRequests, updateProjects } from 'src/app/state/root/root.actions'
 
@@ -14,38 +15,12 @@ import { initState, updateHouseRequests, updateProjects } from 'src/app/state/ro
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private loginService: LoginService, private store: Store) {}
+  constructor(
+    private loginService: LoginService,
+     private store: Store,
+     private projectsService: ProjectsService,
+     ) {}
   
-  projects: Array<Project> = [
-    {
-      id: '1',
-      title: 'Mon super titre ! ',
-      address: '51 Rue Camille Desmoulins',
-      imgId: ['1702419999915'],
-      lat: 49.8827005,
-      long: 2.2939912,
-      description:
-        'Integer magna quam, congue quis neque at, hendrerit vulputate est. Morbi ultricies consectetur lorem non blandit. Aliquam nec arcu eu elit sollicitudin vulputate eget quis ipsum. Proin congue mauris sit amet laoreet iaculis. Nunc magna quam, rhoncus nec mi volutpat, dapibus tempor massa. Vestibulum egestas bibendum urna. Curabitur quis tempor nisl, non congue turpis.',
-      city: 'Amiens',
-      zipcode: '80000',
-      district: 'henriville',
-      visibility: true,
-    },
-    {
-      id: '2',
-      title: 'Mon  autre super titre. ',
-      address: '22 Rue Camille Desmoulins',
-      imgId: ['1702419999915'],
-      lat: 49.6827005,
-      long: 2.2939912,
-      description:
-        'Integer magna quam, congue quis neque at, hendrerit vulputate est. Morbi ultricies consectetur lorem non blandit. Aliquam nec arcu eu elit sollicitudin vulputate eget quis ipsum. Proin congue mauris sit amet laoreet iaculis. Nunc magna quam, rhoncus nec mi volutpat, dapibus tempor massa. Vestibulum egestas bibendum urna. Curabitur quis tempor nisl, non congue turpis.',
-      city: 'Amiens',
-      zipcode: '80000',
-      district: 'henriville',
-      visibility: false,
-    },
-  ]
 
   houseRequests: HouseRequest[] = [
     {
@@ -86,6 +61,8 @@ export class HomeComponent implements OnInit {
     },
   ]
 
+  projects$:Observable<Project[]> = new Observable<Project[]>();
+
   user$: Observable<string> = new Observable<string>()
 
   onLogout() {
@@ -95,7 +72,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(initState());
-    this.store.dispatch(updateProjects({projects:this.projects}));
+
+
+    this.projects$ = this.projectsService.getProjects();
+    this.projects$.subscribe(projects => {
+      this.store.dispatch(updateProjects({projects:projects}))
+    })
+
     this.store.dispatch(updateHouseRequests({houseRequest:this.houseRequests}));
   }
 }
