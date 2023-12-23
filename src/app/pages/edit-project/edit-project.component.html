@@ -3,9 +3,11 @@
     <mat-icon>arrow_back</mat-icon>
   </button>
 
+  <p id="project-id">id : {{project.id}}</p>
   <app-project-form
     [project]="project"
     [formTitle]="'Edit project'"
+    (submitForm)="onSubmitForm($event)"
   ></app-project-form>
 
   <button mat-raised-button color="warn" (click)="openConfimDialog()">delete project</button>

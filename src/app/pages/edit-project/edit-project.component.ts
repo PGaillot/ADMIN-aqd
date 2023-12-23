@@ -4,6 +4,15 @@ import { Project } from 'src/app/models/project.model'
 import { MatDialog } from '@angular/material/dialog'
 import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component'
 import { ProjectsService } from 'src/app/services/projects.service'
+import {
+  Firestore,
+  collection,
+  collectionData,
+  addDoc,
+  DocumentReference,
+  setDoc,
+  doc,
+} from '@angular/fire/firestore'
 
 @Component({
   selector: 'app-edit-project',
@@ -11,6 +20,7 @@ import { ProjectsService } from 'src/app/services/projects.service'
   styleUrls: ['./edit-project.component.scss'],
 })
 export class EditProjectComponent implements OnInit {
+  private projectsCollection
   projectData: any
   project!: Project
 
@@ -19,7 +29,21 @@ export class EditProjectComponent implements OnInit {
     public dialog: MatDialog,
     private projectsService: ProjectsService,
     private router: Router,
-  ) {}
+    private firestore: Firestore,
+  ) {
+    this.projectsCollection = collection(firestore, 'Projects')
+  }
+
+  onSubmitForm(project: Project) {
+    console.log(project)
+
+    setDoc(doc(this.projectsCollection, project.id), project)
+      .then((res) => {
+        this.router.navigate(['home'])
+        console.log(res)
+      })
+      .catch((e) => console.error(e))
+  }
 
   openConfimDialog() {
     const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -34,9 +58,10 @@ export class EditProjectComponent implements OnInit {
         this.projectsService
           .removeProject(this.project.id)
           .then(() => {
-            console.log('Deteled Success');
-            this.router.navigate(['home']);
-          }).catch((e) => console.error(e));
+            console.log('Deteled Success')
+            this.router.navigate(['home'])
+          })
+          .catch((e) => console.error(e))
       }
     })
   }
