@@ -1,15 +1,24 @@
-
-
 <body>
-  <p id="email">{{ houseRequest.email }}</p>
-  <p id="message"></p>
-  <p id="address">{{ houseRequest.address }}</p>
-  <mat-button-toggle-group name="status" aria-label="Project Status">
-    <mat-button-toggle [(ngModel)]="newStatus"  value="reject">Rejeted</mat-button-toggle>
-    <mat-button-toggle  [(ngModel)]="newStatus"  value="pending">Pending</mat-button-toggle>
-    <mat-button-toggle  [(ngModel)]="newStatus" value="approuved">Approuved</mat-button-toggle>
-  </mat-button-toggle-group>
-  <button mat-raised-button color="primary" (click)="onChangeStatus()">validate</button>
-  <button mat-stroked-button color="warn" (click)="openConfimDialog()">delete house request</button>
+  <form #form="ngForm">
+    <p id="email">{{ houseRequest.email }}</p>
+    <p id="message"></p>
+    <p id="address">{{ houseRequest.address }}</p>
+    <mat-button-toggle-group name="status" aria-label="Project Status">
+      <mat-button-toggle [(ngModel)]="newStatus" [checked]="houseRequest.status === 'reject'" value="reject">
+        Rejeted
+      </mat-button-toggle>
+      <mat-button-toggle [(ngModel)]="newStatus"  [checked]="houseRequest.status === 'pending'" value="pending">
+        Pending
+      </mat-button-toggle>
+      <mat-button-toggle [(ngModel)]="newStatus" [checked]="houseRequest.status === 'approuved'" value="approuved">
+        Approuved
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <button [disabled]="!form.valueChanges" mat-raised-button color="primary" (click)="onChangeStatus()">
+      validate
+    </button>
+    <button mat-stroked-button color="warn" (click)="openConfimDialog()">
+      delete house request
+    </button>
+  </form>
 </body>
-  

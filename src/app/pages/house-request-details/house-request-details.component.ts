@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Firestore, collection, doc, setDoc } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,6 +24,8 @@ export class HouseRequestDetailsComponent implements OnInit {
   ) {
     this.houseRequestsCollection = collection(firestore, 'Projects')
   }
+
+  @ViewChild('ngForm') formRef!: ElementRef;
 
   openConfimDialog(){
       const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
