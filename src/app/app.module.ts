@@ -30,7 +30,8 @@ import {  rootReducer } from './state/root/root.reducer'
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { HouseRequestDetailsComponent } from './pages/house-request-details/house-request-details.component'
+import { HouseRequestDetailsComponent } from './pages/house-request-details/house-request-details.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -43,6 +44,7 @@ const MaterialModules = [
   MatDialogModule,
   MatToolbarModule,
   MatMenuModule,
+  MatButtonToggleModule,
 ]
 
 @NgModule({

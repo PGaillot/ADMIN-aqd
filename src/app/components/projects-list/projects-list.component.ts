@@ -18,13 +18,11 @@ export class ProjectsListComponent implements OnInit {
   }
 
   navToEdit(project: Project) {
-    console.log(project);
     const navigationExtras = {
       queryParams: {
         projectData: JSON.stringify(project),
       },
     };
-    console.log(navigationExtras);
     
     this.router.navigate(['/edit-project'], navigationExtras)
   }

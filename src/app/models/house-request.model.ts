@@ -1,4 +1,5 @@
 export interface HouseRequest{
+    id:string,
     address:string,
     email:string,
     lat:number,
