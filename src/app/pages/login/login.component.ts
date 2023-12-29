@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit {
     private projectsService: ProjectsService,
   ) {}
 
+  login(){
+    signInWithRedirect(auth, provider);
+  }
+
   ngOnInit(): void {
     const authToken = localStorage.getItem('gg-authToken')
     if (authToken) {
@@ -63,6 +67,8 @@ export class LoginComponent implements OnInit {
           const email = error.customData.email
           const credential = GoogleAuthProvider.credentialFromError(error)
         })
+    } else {
+      this.login();
     }
 
     getRedirectResult(auth)
