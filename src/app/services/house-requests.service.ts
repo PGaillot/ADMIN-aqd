@@ -12,7 +12,7 @@ export class HouseRequestsService {
   houseRequest$: Observable<HouseRequest[]> = new Observable<HouseRequest[]>()
 
   constructor(private firestore: Firestore) { 
-    this.houseRequestCollection = collection(firestore, 'HouseRequests');
+    this.houseRequestCollection = collection(firestore, 'HouseRequest');
     this.houseRequest$ =  collectionData(this.houseRequestCollection) as Observable<HouseRequest[]>;
   }
 
@@ -20,7 +20,7 @@ export class HouseRequestsService {
     return this.houseRequest$;
   }
 
-  removeProject(id:string):Promise<any>{
+  removeHouseRequest(id:string):Promise<any>{
     return deleteDoc(doc(this.houseRequestCollection, id));
   }
 
