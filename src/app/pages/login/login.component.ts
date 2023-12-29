@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
     private projectsService: ProjectsService,
   ) {}
 
-  signIn(){
-    signInWithRedirect(auth, provider);
+  signIn() {
+    signInWithRedirect(auth, provider)
   }
 
-  login(signInResult:any){
+  login(signInResult: any) {
     const credential = GoogleAuthProvider.credentialFromResult(signInResult)
     const token = credential!.accessToken
 
@@ -62,24 +62,25 @@ export class LoginComponent implements OnInit {
       const credential = GoogleAuthProvider.credential(null, authToken)
       signInWithCredential(auth, credential)
         .then((result) => {
-         this.login(result)
+          this.login(result)
         })
         .catch((error) => {
-          console.error(error);
-          localStorage.removeItem('gg-authToken');
+          console.error(error)
+          localStorage.removeItem('gg-authToken')
         })
     } else {
-      this.signIn();
+      this.signIn()
     }
 
     getRedirectResult(auth)
       .then((result) => {
-        if (result) {
+        if (result) {          
           this.login(result)
+        }
       })
       .catch((error) => {
-        console.error(error);
-        localStorage.removeItem('gg-authToken');
+        console.error(error)
+        localStorage.removeItem('gg-authToken')
       })
   }
 }

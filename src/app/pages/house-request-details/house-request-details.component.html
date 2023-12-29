@@ -3,14 +3,14 @@
     <p id="email">{{ houseRequest.email }}</p>
     <p id="message"></p>
     <p id="address">{{ houseRequest.address }}</p>
-    <mat-button-toggle-group name="status" aria-label="Project Status">
-      <mat-button-toggle [(ngModel)]="newStatus" [checked]="houseRequest.status === 'reject'" value="reject">
+    <mat-button-toggle-group [(ngModel)]="newStatus" name="status" aria-label="Project Status">
+      <mat-button-toggle [checked]="houseRequest.status === 'reject'" value="reject">
         Rejeted
       </mat-button-toggle>
-      <mat-button-toggle [(ngModel)]="newStatus"  [checked]="houseRequest.status === 'pending'" value="pending">
+      <mat-button-toggle  [checked]="houseRequest.status === 'pending'" value="pending">
         Pending
       </mat-button-toggle>
-      <mat-button-toggle [(ngModel)]="newStatus" [checked]="houseRequest.status === 'approuved'" value="approuved">
+      <mat-button-toggle [checked]="houseRequest.status === 'approuved'" value="approuved">
         Approuved
       </mat-button-toggle>
     </mat-button-toggle-group>

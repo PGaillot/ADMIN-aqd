@@ -43,21 +43,20 @@ export class HouseRequestDetailsComponent implements OnInit {
   }
 
   onChangeStatus(){
-
+    if(this.houseRequest.status !== this.newStatus){
       console.log(this.newStatus)
-      // setDoc(doc(this.houseRequestsCollection, this.houseRequest.id), this.houseRequest)
-      //   .then((res) => {
-      //     this.router.navigate(['home'])
-      //   })
-      //   .catch((e) => console.error(e))
-    
+    } else {
+      this.router.navigate(['home'])
+    }
+  
   }
 
   ngOnInit(): void {
     // this.status = this.houseRequest.status;
     this.route.queryParams.subscribe((params) => {
       this.projectData = JSON.parse(params['projectData'])
-      this.houseRequest = this.projectData
+      this.houseRequest = this.projectData;
+      this.newStatus = this.houseRequest.status;
     })
   }
 
