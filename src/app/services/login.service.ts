@@ -22,7 +22,7 @@ export class LoginService {
       .then(() => {
         // Sign-out successful.
         this.logged = false;
-        localStorage.removeItem('username');
+        localStorage.removeItem('gg-authToken');
         this.router.navigate(['login']);
       })
       .catch((error) => {
