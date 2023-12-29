@@ -34,8 +34,24 @@ export class LoginComponent implements OnInit {
     private projectsService: ProjectsService,
   ) {}
 
-  login(){
+  signIn(){
     signInWithRedirect(auth, provider);
+  }
+
+  login(signInResult:any){
+    const credential = GoogleAuthProvider.credentialFromResult(signInResult)
+    const token = credential!.accessToken
+
+    if (signInResult.user.displayName && signInResult.user.email) {
+      const user: User = {
+        username: signInResult.user.displayName,
+        mail: signInResult.user.email,
+        id: signInResult.user.uid,
+      }
+      this.loginService.isLoggedIn()
+      this.router.navigate(['home'])
+      this.store.dispatch(updateUser({ user }))
+    }
   }
 
   ngOnInit(): void {
@@ -46,55 +62,24 @@ export class LoginComponent implements OnInit {
       const credential = GoogleAuthProvider.credential(null, authToken)
       signInWithCredential(auth, credential)
         .then((result) => {
-          const credential = GoogleAuthProvider.credentialFromResult(result)
-          const token = credential!.accessToken
-
-          //* USER LOGGED !
-          if (result.user.displayName && result.user.email) {
-            const user: User = {
-              username: result.user.displayName,
-              mail: result.user.email,
-              id: result.user.uid,
-            }
-            this.loginService.isLoggedIn()
-            this.router.navigate(['home'])
-            this.store.dispatch(updateUser({ user }))
-          }
+         this.login(result)
         })
         .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          const email = error.customData.email
-          const credential = GoogleAuthProvider.credentialFromError(error)
+          console.error(error);
+          localStorage.removeItem('gg-authToken');
         })
     } else {
-      this.login();
+      this.signIn();
     }
 
     getRedirectResult(auth)
       .then((result) => {
         if (result) {
-          const credential = GoogleAuthProvider.credentialFromResult(result)
-          const token = credential!.accessToken
-          localStorage.setItem('gg-authToken', token!)
-          //* USER LOGGED !
-          if (result.user.displayName && result.user.email) {
-            const user: User = {
-              username: result.user.displayName,
-              mail: result.user.email,
-              id: result.user.uid,
-            }
-            this.loginService.isLoggedIn()
-            this.router.navigate(['home'])
-            this.store.dispatch(updateUser({ user }))
-          }
-        }
+          this.login(result)
       })
       .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        const email = error.customData.email
-        const credential = GoogleAuthProvider.credentialFromError(error)
+        console.error(error);
+        localStorage.removeItem('gg-authToken');
       })
   }
 }
