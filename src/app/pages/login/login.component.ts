@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
     const authToken = localStorage.getItem('gg-authToken')
     if (authToken) {
       console.log('auhToken !')
-
       const credential = GoogleAuthProvider.credential(null, authToken)
       signInWithCredential(auth, credential)
         .then((result) => {
@@ -68,9 +67,7 @@ export class LoginComponent implements OnInit {
           console.error(error)
           localStorage.removeItem('gg-authToken')
         })
-    } else {
-      this.signIn()
-    }
+    } 
 
     getRedirectResult(auth)
       .then((result) => {
