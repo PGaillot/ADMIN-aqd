@@ -32,6 +32,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { HouseRequestDetailsComponent } from './pages/house-request-details/house-request-details.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 const MaterialModules = [
   MatCheckboxModule,
@@ -45,6 +47,7 @@ const MaterialModules = [
   MatToolbarModule,
   MatMenuModule,
   MatButtonToggleModule,
+  MatSnackBarModule,
 ]
 
 @NgModule({
