@@ -33,6 +33,7 @@ import { environment } from 'src/environments/environment';
 import { HouseRequestDetailsComponent } from './pages/house-request-details/house-request-details.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { getStorage, provideStorage } from '@angular/fire/storage'
 
 
 const MaterialModules = [
@@ -66,8 +67,10 @@ const MaterialModules = [
   imports: [
     FormsModule,
     BrowserModule,
+    
     provideFirebaseApp(() => initializeApp({ ...environment.firebaseConfig })),
     provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     ...MaterialModules,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -1,26 +1,26 @@
 <div >
-  <table class="full-width" mat-table [dataSource]="dataSource">
+  <table class="full-width" mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" >
     <!-- Progress Column -->
     <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef>address</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by address">address</th>
       <td mat-cell *matCellDef="let row">{{ row.address }}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="city">
-      <th mat-header-cell *matHeaderCellDef>city</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city">city</th>
       <td mat-cell *matCellDef="let row">{{ row.city }}</td>
     </ng-container>
 
     <!-- Fruit Column -->
     <ng-container matColumnDef="zipcode">
-      <th mat-header-cell *matHeaderCellDef>zipcode</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by zipcode">zipcode</th>
       <td mat-cell *matCellDef="let row">{{ row.zipcode }}</td>
     </ng-container>
 
     <!-- Edit Column -->
     <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef>edit</th>
+      <th mat-header-cell *matHeaderCellDef >edit</th>
       <td mat-cell *matCellDef="let row">
         <button mat-icon-button (click)="navToEdit(row)"><mat-icon>edit</mat-icon></button>
       </td>
